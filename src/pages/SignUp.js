@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { auth, db } from "../firebase"; // Import Firebase auth and Firestore
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import {
   Box,
   Button,
@@ -13,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -25,18 +28,41 @@ const SignUp = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
+    try {
+      // Create user in Firebase Authentication
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(formData.email)) {
-      setError("Please enter a valid email address.");
-      return;
+      // Get user ID from Firebase Auth
+      const user = userCredential.user;
+
+      // Add user data to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name: formData.name,
+        email: formData.email,
+        uid: user.uid,
+        createdAt: serverTimestamp(),
+      });
+
+      alert("Sign-up successful! User data saved to Firestore.");
+      navigate("/dashboard"); // Redirect to the dashboard or desired page
+    } catch (err) {
+      // Handle Firebase errors
+      if (err.code === "auth/weak-password") {
+        setError("Password should be at least 6 characters.");
+      } else if (err.code === "auth/email-already-in-use") {
+        setError("This email is already in use. Please try logging in.");
+      } else if (err.code === "auth/invalid-email") {
+        setError("Please enter a valid email address.");
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
     }
-
-    setError("");
-    alert("Sign-up successful!");
-    navigate("/dashboard");
   };
 
   return (
@@ -85,13 +111,13 @@ const SignUp = () => {
         >
           Enter your details to get started.
         </Typography>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSignUp}>
           <TextField
             fullWidth
-            label="Username"
-            name="username"
+            label="Name"
+            name="name"
             variant="outlined"
-            value={formData.username}
+            value={formData.name}
             onChange={handleChange}
             sx={{
               marginBottom: "20px",
@@ -168,29 +194,6 @@ const SignUp = () => {
             Sign Up
           </Button>
         </form>
-        <Typography
-          variant="body2"
-          sx={{
-            textAlign: "center",
-            marginTop: "16px",
-            color: "#444",
-            fontFamily: "'Cooper Hewitt Thin', sans-serif",
-          }}
-        >
-          Already have an account?{" "}
-          <Button
-            size="small"
-            sx={{
-              color: "#000",
-              textTransform: "none",
-              fontWeight: 600,
-              fontFamily: "'Cooper Hewitt Heavy', sans-serif",
-            }}
-            onClick={() => navigate("/login")}
-          >
-            Log In
-          </Button>
-        </Typography>
       </Box>
     </Box>
   );
