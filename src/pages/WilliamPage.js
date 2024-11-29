@@ -65,7 +65,7 @@ const WilliamPage = () => {
   const navigate = useNavigate();
   const videos = [
     require("../assets/bench.mp4"),
-    require("../assets/IMG_4244.mp4"), // Assuming the newly uploaded video is added to assets
+    require("../assets/IMG_4244.mp4"),
   ];
 
   // Function to handle video slider items
