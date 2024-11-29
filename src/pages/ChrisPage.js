@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AliceCarousel from "react-alice-carousel";
 import { motion } from "framer-motion";
 import chrisImage from "../assets/chris2.webp";
-import brownLogo from "../assets/brown.webp";
+import brownLogo from "../assets/brown.png";
 import "../assets/animations.css";
 import "react-alice-carousel/lib/alice-carousel.css";
 

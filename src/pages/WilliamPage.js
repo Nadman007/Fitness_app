@@ -300,14 +300,14 @@ const WilliamPage = () => {
           >
             I began coaching others after training and competing myself for
             several years. My journey started when I was studying Kinesiology at
-            Ohio State University, where I developed a passion for understanding
-            the biomechanics behind strength training. I have been coaching
-            clients both online and in person for over 12 years. My mission is
-            to help individuals reach new levels in their training while also
-            creating sustainable fitness programs that will lead to long-term
-            success. I combine scientific principles with practical experience
-            to ensure my clients see results, no matter where they are on their
-            fitness journey.
+            The University of Toronto, where I developed a passion for
+            understanding the biomechanics behind strength training. I have been
+            coaching clients both online and in person for over 12 years. My
+            mission is to help individuals reach new levels in their training
+            while also creating sustainable fitness programs that will lead to
+            long-term success. I combine scientific principles with practical
+            experience to ensure my clients see results, no matter where they
+            are on their fitness journey.
           </Typography>
         </Box>
       </FadeInSection>
