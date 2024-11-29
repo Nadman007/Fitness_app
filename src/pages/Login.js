@@ -12,7 +12,8 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
-import VegetaGif from "../assets/vegeta.gif"; // Ensure this is the correct path
+import { signInWithEmailAndPassword } from "firebase/auth"; // Firebase login method
+import { auth } from "../firebase"; // Firebase auth object
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -23,10 +24,25 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Login Successful:", formData);
-    navigate("/questionnaire");
+    try {
+      // Attempt to log in the user with Firebase Authentication
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+
+      // If login is successful
+      console.log("Login Successful:", userCredential.user.email);
+      alert("Login Successful! Redirecting...");
+      navigate("/questionnaire"); // Redirect to the questionnaire page
+    } catch (error) {
+      // If login fails, display an error message
+      console.error("Login failed:", error.message);
+      alert("Login failed: " + error.message);
+    }
   };
 
   return (
@@ -36,7 +52,7 @@ const Login = () => {
         height: "100vh",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#f0f0f0", // Original background color
       }}
     >
       <Box
@@ -44,9 +60,9 @@ const Login = () => {
           width: "100%",
           maxWidth: 400,
           padding: "40px",
-          backgroundColor: "#f0f0f0",
+          backgroundColor: "#fff", // Original white background
           borderRadius: "16px",
-          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)", // Floating shadow effect
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)", // Original shadow
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -59,7 +75,7 @@ const Login = () => {
             fontWeight: 700,
             marginBottom: "24px",
             textAlign: "center",
-            color: "#000",
+            color: "#000", // Original black text color
           }}
         >
           Welcome Back

@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { useNavigate } from "react-router-dom";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
 import personalTrainingImage from "../assets/personal.jpg";
 import functionalTrainingImage from "../assets/functional.jpg";
 import vandenreichLogo from "../assets/Vandenreich_symbol.png";
@@ -18,6 +20,17 @@ import vandenreichLogo from "../assets/Vandenreich_symbol.png";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [showTopButton, setShowTopButton] = useState(false);
+
+  // Check authentication state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigate("/login"); // Redirect to login if no user is authenticated
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +47,17 @@ const Dashboard = () => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      alert("You have been logged out!");
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error.message);
+      alert("Failed to log out. Please try again.");
+    }
   };
 
   const scrollToAbout = () => {
@@ -98,6 +122,23 @@ const Dashboard = () => {
             >
               Your Profile
             </Typography>
+            <Button
+              onClick={handleLogout}
+              sx={{
+                backgroundColor: "#000",
+                color: "#fff",
+                textTransform: "none",
+                padding: "8px 16px",
+                borderRadius: "8px",
+                fontWeight: 600,
+                fontFamily: "'Josefin Sans', sans-serif",
+                ":hover": {
+                  backgroundColor: "#333",
+                },
+              }}
+            >
+              Logout
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
