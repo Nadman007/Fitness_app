@@ -76,13 +76,15 @@ const Dashboard = () => {
             </Button>
             <Button
               sx={{ textTransform: "none", fontWeight: 600, color: "#000" }}
+              onClick={() => navigate("/training")}
             >
               Training
             </Button>
             <Button
               sx={{ textTransform: "none", fontWeight: 600, color: "#000" }}
+              onClick={() => navigate("/subscribe")}
             >
-              FindPT
+              Subscription
             </Button>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -225,7 +227,7 @@ const Dashboard = () => {
                   boxShadow: "0 6px 30px rgba(0, 0, 0, 0.2)",
                 },
               }}
-              onClick={() => navigate("/functional-training")}
+              onClick={() => navigate("/personal-training")}
             >
               <Typography
                 sx={{
@@ -318,6 +320,7 @@ const Dashboard = () => {
         </Typography>
         <Button
           variant="contained"
+          onClick={() => navigate("/subscribe")}
           sx={{
             backgroundColor: "#fff",
             color: "#000",

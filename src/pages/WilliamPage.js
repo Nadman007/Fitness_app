@@ -420,12 +420,14 @@ const WilliamPage = () => {
       <FadeInSection>
         {/* Book Now Section */}
         <Box
+          variant="contained"
+          onClick={() => navigate(`/book-now/William`)}
           sx={{
             marginTop: "40px",
             textAlign: "center",
             padding: "40px",
-            backgroundColor: "#000", // Black background
-            color: "#fff", // White text
+            backgroundColor: "#000",
+            color: "#fff",
             borderRadius: "20px",
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.2)",
             position: "relative",
@@ -476,16 +478,16 @@ const WilliamPage = () => {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "#ff0000", // Red button
-              color: "#fff", // White text
+              backgroundColor: "#ff0000",
+              color: "#fff",
               padding: "10px 20px",
               borderRadius: "5px",
               fontFamily: "'Josefin Sans', sans-serif",
               zIndex: 1,
               position: "relative",
               ":hover": {
-                backgroundColor: "#ff3333", // Slightly brighter red on hover
-                color: "#fff", // White text on hover
+                backgroundColor: "#ff3333",
+                color: "#fff",
               },
             }}
           >

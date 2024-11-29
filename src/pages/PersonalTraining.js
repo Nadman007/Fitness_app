@@ -72,7 +72,7 @@ const TrainingPage = () => {
           </Typography>
           <Box sx={{ display: "flex", gap: "20px" }}>
             <Button
-              onClick={() => navigate("/about")}
+              onClick={() => navigate("/dashboard")}
               sx={{ textTransform: "none", fontWeight: 600, color: "#000" }}
             >
               About
@@ -84,10 +84,10 @@ const TrainingPage = () => {
               Training
             </Button>
             <Button
-              onClick={() => navigate("/find-pt")}
+              onClick={() => navigate("/subscribe")}
               sx={{ textTransform: "none", fontWeight: 600, color: "#000" }}
             >
-              FindPT
+              Subscription
             </Button>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -218,6 +218,7 @@ const TrainingPage = () => {
                         backgroundColor: "#b00711",
                       },
                     }}
+                    onClick={() => handleProfileClick(trainer.id)} // Added profile click action for See Profile button
                   >
                     See Profile
                   </Button>

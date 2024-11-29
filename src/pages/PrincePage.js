@@ -137,17 +137,17 @@ const PrincePage = () => {
             sx={{
               padding: "25px",
               width: { xs: "100%", md: "50%" },
-              textAlign: "center", // Center the text
+              textAlign: "center",
             }}
           >
             <Typography
               variant="h3"
               component={motion.div}
-              whileHover={{ color: "#ff0000" }} // Turns red on hover
+              whileHover={{ color: "#ff0000" }}
               sx={{
                 fontWeight: "bold",
                 fontFamily: "'Cooper Hewitt Heavy', sans-serif",
-                marginBottom: "16px",
+                marginBottom: "32px",
                 color: "#000",
               }}
             >
@@ -160,7 +160,7 @@ const PrincePage = () => {
                 fontWeight: 400,
                 color: "#666",
                 lineHeight: 1.5,
-                fontSize: "1.2em", // Make the text slightly bigger
+                fontSize: "1.2em",
               }}
             >
               I am passionate about fitness and sports. My journey took me all
@@ -174,7 +174,7 @@ const PrincePage = () => {
               <Box
                 sx={{
                   textAlign: "center",
-                  marginTop: "20px",
+                  marginTop: "60px",
                 }}
               >
                 <img
@@ -192,14 +192,14 @@ const PrincePage = () => {
         {/* Second Section (Specializations) */}
         <Box
           sx={{
-            marginTop: "80px",
+            marginTop: "200px",
             textAlign: "center",
           }}
         >
           <Typography
             variant="h4"
             component={motion.div}
-            whileHover={{ color: "#ff0000" }} // Turns red on hover
+            whileHover={{ color: "#ff0000" }}
             sx={{
               fontWeight: "bold",
               fontFamily: "'Cooper Hewitt Heavy', sans-serif",
@@ -272,7 +272,7 @@ const PrincePage = () => {
           <Typography
             variant="h4"
             component={motion.div}
-            whileHover={{ color: "#ff0000" }} // Turns red on hover
+            whileHover={{ color: "#ff0000" }}
             sx={{
               fontWeight: "bold",
               fontFamily: "'Cooper Hewitt Heavy', sans-serif",
@@ -292,7 +292,7 @@ const PrincePage = () => {
               fontSize: "1.2em",
               maxWidth: "800px",
               margin: "0 auto",
-              marginBottom: "20px", // Add some margin-bottom for spacing
+              marginBottom: "20px",
             }}
           >
             My name is Prince, and my journey in fitness began with a strong
@@ -387,7 +387,7 @@ const PrincePage = () => {
         {/* Video Slideshow Section */}
         <Box
           sx={{
-            marginTop: "20px",
+            marginTop: "50px",
             textAlign: "center",
           }}
         >
@@ -415,12 +415,14 @@ const PrincePage = () => {
       <FadeInSection>
         {/* Book Now Section */}
         <Box
+          variant="contained"
+          onClick={() => navigate(`/book-now/Prince`)}
           sx={{
             marginTop: "40px",
             textAlign: "center",
             padding: "40px",
-            backgroundColor: "#000", // Black background
-            color: "#fff", // White text
+            backgroundColor: "#000",
+            color: "#fff",
             borderRadius: "20px",
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.2)",
             position: "relative",
@@ -471,8 +473,8 @@ const PrincePage = () => {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "#ff0000", // Red button
-              color: "#fff", // White text
+              backgroundColor: "#ff0000",
+              color: "#fff",
               padding: "10px 20px",
               borderRadius: "5px",
               fontFamily: "'Josefin Sans', sans-serif",
@@ -480,7 +482,7 @@ const PrincePage = () => {
               position: "relative",
               ":hover": {
                 backgroundColor: "#ff3333",
-                color: "#fff", // White text on hover
+                color: "#fff",
               },
             }}
           >
