@@ -1,2 +1,4 @@
 # Fitness_app
-Moharaj Oritro (100785545) - Did all of the Front End Design, Added the Design for the Login Sign up and the Landing Page. Created the Personal Trainer Pages and the individual designs. Created the Subscriptions Page.
+Moharaj Oritro (100785545) - Implemented interactive features for the Personal Training pages, including fade-in animations and scroll-based effects, along with a refined, user-friendly layout for each trainer's profile section. Added visual media integration to enhance user engagement.
+Enhanced the user experience by adding responsive animations to the Personal Training page. Created individual trainer profile pages with unique visual styles and interactive elements, such as scrolling videos and engaging card designs.
+Completed all the UML diagrams for the project
