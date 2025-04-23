@@ -1,58 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness App</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elevar Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script defer src="script.js"></script>
 </head>
 <body>
-    <!-- Splash Screen -->
-    <div id="splashScreen" class="splash-screen">
-        <h1>Elevar</h1>
-        <p>Do the hard work, especially when you don't feel like it</p>
-        <div class="spinner"></div>
-    </div>
+  <!-- Splash Screen -->
+  <div id="splashScreen" class="splash-screen">
+    <h1><em>Elevar</em></h1>
+    <p>Do the hard work, especially when you don't feel like it</p>
+    <div class="spinner"></div>
+  </div>
 
-    <!-- Main Content -->
-    <div id="mainContent" class="main-content" style="display: none;">
-        <!-- Register -->
-        <section id="registerSection">
-            <h2>Register</h2>
-            <form id="registerForm">
-                <input type="text" id="registerUsername" placeholder="Username" required>
-                <input type="password" id="registerPassword" placeholder="Password" required>
-                <button type="submit">Register</button>
-            </form>
-            <p id="registerResult"></p>
-            <p>Already have an account? <a href="#" id="goToLogin">Login here</a></p>
-        </section>
+  <!-- Main Content -->
+  <div id="mainContent" class="hidden">
+    <!-- Register -->
+    <section id="registerSection" class="container hidden">
+      <h2>Register ✏️</h2>
+      <form id="registerForm">
+        <input type="text" id="registerUsername" placeholder="Email" required>
+        <div class="password-wrapper">
+          <input type="password" id="registerPassword" placeholder="Password" required>
+          <span class="toggle-password" id="toggleRegister">👁️</span>
+        </div>
+        <input type="number" id="registerHeight" placeholder="Height (cm)" required>
+        <input type="number" id="registerWeight" placeholder="Weight (kg)" required>
+        <input type="number" id="registerAge" placeholder="Age" required>
+        <select id="registerGender" required>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <label class="checkbox-container">
+          <input type="checkbox" id="rememberMe"> Remember Me
+        </label>
+        <button type="submit">Register</button>
+        <div id="registerResult"></div>
+      </form>
+      <div class="switch-link">Already have an account? <a href="#" id="goToLogin">Log in here →</a></div>
+    </section>
 
-        <!-- Login -->
-        <section id="loginSection" style="display: none;">
-            <h2>Login</h2>
-            <form id="loginForm">
-                <input type="text" id="loginUsername" placeholder="Username" required>
-                <input type="password" id="loginPassword" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-            <p id="loginResult"></p>
-        </section>
+    <!-- Login -->
+    <section id="loginSection" class="container hidden">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Username" required>
+        <div class="password-wrapper">
+          <input type="password" id="loginPassword" placeholder="Password" required>
+          <span class="toggle-password" id="toggleLogin">🔐</span>
+        </div>
+        <label class="checkbox-container">
+          <input type="checkbox" id="rememberMeLogin"> Remember Me
+        </label>
+        <button type="submit">Login</button>
+        <div id="loginResult"></div>
+      </form>
+      <div class="switch-link">Don’t have an account? <a href="#" id="goToRegister">Register here →</a></div>
+    </section>
 
-        <!-- Dashboard -->
-        <section id="dashboardSection" style="display: none;">
-            <h2>Welcome to Elevar</h2>
-            <button id="logoutBtn">Logout</button>
-            <h3>Log Workout</h3>
-            <form id="workoutForm">
-                <input type="text" id="workoutType" placeholder="Workout Type" required>
-                <input type="number" id="workoutDuration" placeholder="Duration (minutes)" required>
-                <button type="submit">Log Workout</button>
-            </form>
-            <p id="workoutResult"></p>
-        </section>
-    </div>
+    <!-- Dashboard -->
+    <section id="dashboardSection" class="container hidden">
+      <h2>Welcome to Elevar</h2>
+      <button id="logoutBtn">Logout</button>
 
-    <script src="script.js"></script>
+      <h3>Log Workout</h3>
+      <form id="workoutForm">
+        <input type="text" id="workoutType" placeholder="Workout Type" required>
+        <input type="number" id="workoutDuration" placeholder="Duration (minutes)" required>
+        <button type="submit">Log Workout</button>
+      </form>
+
+      <h3>Your Workouts:</h3>
+      <div id="workoutResult"></div>
+    </section>
+
+    <!-- Get to Know You -->
+    <section id="getToKnowSection" class="container hidden">
+      <h2>Tell us about yourself</h2>
+      <form id="profileForm">
+        <input type="number" id="height" placeholder="Height (cm)" required>
+        <input type="number" id="weight" placeholder="Weight (kg)" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <select id="gender" required>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <button type="submit">Continue</button>
+      </form>
+    </section>
+  </div>
 </body>
 </html>

@@ -20,17 +20,33 @@ function authenticateToken(req, res, next) {
     });
 }
 
-// Log workout route
+// POST /workouts/log - Log a new workout
 router.post('/log', authenticateToken, async (req, res) => {
     const { type, duration } = req.body;
 
     try {
-        const newWorkout = new Workout({ userId: req.user.userId, type, duration });
+        const newWorkout = new Workout({
+            userId: req.user.userId,
+            type,
+            duration,
+            date: new Date() // optional: add date for logging
+        });
         await newWorkout.save();
         res.status(201).json({ message: 'Workout logged successfully' });
     } catch (error) {
         console.error('Error logging workout:', error);
         res.status(500).json({ error: 'Error logging workout' });
+    }
+});
+
+// GET /workouts - Fetch workouts for current user
+router.get('/', authenticateToken, async (req, res) => {
+    try {
+        const workouts = await Workout.find({ userId: req.user.userId }).sort({ date: -1 });
+        res.json(workouts);
+    } catch (error) {
+        console.error('Error fetching workouts:', error);
+        res.status(500).json({ error: 'Error fetching workouts' });
     }
 });
 

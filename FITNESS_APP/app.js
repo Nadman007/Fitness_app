@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 const authRoutes = require('./routes/auth');
 const workoutRoutes = require('./routes/workout');
@@ -11,6 +12,9 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve frontend
+app.use('/frontend', express.static(path.join(__dirname, 'frontend')));
 
 // MongoDB connection
 mongoose

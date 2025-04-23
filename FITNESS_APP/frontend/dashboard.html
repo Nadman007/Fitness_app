@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fitness Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    #workoutList {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .workout-item {
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Welcome to Your Dashboard</h2>
+  <div id="workoutList">
+    <p>Loading workouts...</p>
+  </div>
+
+  <script>
+    const token = localStorage.getItem('token');  // Must be stored after login
+
+    async function loadWorkouts() {
+      try {
+        const res = await fetch('http://localhost:5001/workouts', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        const data = await res.json();
+
+        const list = document.getElementById('workoutList');
+        list.innerHTML = "";
+
+        if (!data.length) {
+          list.innerHTML = "<p>No workouts logged yet.</p>";
+          return;
+        }
+
+        data.forEach(w => {
+          const item = document.createElement('div');
+          item.classList.add('workout-item');
+          item.innerHTML = `
+            <strong>Type:</strong> ${w.type}<br>
+            <strong>Duration:</strong> ${w.duration} min<br>
+            <small>${new Date(w.date).toLocaleString()}</small>
+          `;
+          list.appendChild(item);
+        });
+      } catch (err) {
+        console.error(err);
+        document.getElementById('workoutList').innerHTML = "<p>Failed to load workouts.</p>";
+      }
+    }
+
+    loadWorkouts();
+  </script>
+
+</body>
+</html>
